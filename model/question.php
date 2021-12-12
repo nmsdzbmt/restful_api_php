@@ -41,5 +41,34 @@
             $this->cau_d = $row['cau_d'];
             $this->cau_dung = $row['cau_dung'];
         }
+
+        //create data
+        public function create(){
+            $query = "INSERT INTO cauhoi SET title=:title, cau_a=:cau_a, cau_b=:cau_b, cau_c=:cau_c, cau_d=:cau_d, cau_dung=:cau_dung";
+            $stmt = $this->conn->prepare($query);
+
+            //clean data: Lọc kí tự đặc biệt
+            $this->title = htmlspecialchars(strip_tags($this->title));
+            $this->cau_a = htmlspecialchars(strip_tags($this->cau_a));
+            $this->cau_b = htmlspecialchars(strip_tags($this->cau_b));
+            $this->cau_c = htmlspecialchars(strip_tags($this->cau_c));
+            $this->cau_d = htmlspecialchars(strip_tags($this->cau_d));
+            $this->cau_dung = htmlspecialchars(strip_tags($this->cau_dung));
+
+            //bind data
+            $stmt->bindParam(':title', $this->title);
+            $stmt->bindParam(':cau_a', $this->cau_a);
+            $stmt->bindParam(':cau_b', $this->cau_b);
+            $stmt->bindParam(':cau_c', $this->cau_c);
+            $stmt->bindParam(':cau_d', $this->cau_d);
+            $stmt->bindParam(':cau_dung', $this->cau_dung);
+            
+            if($stmt->execute()){
+                return true;
+            }else{
+                printf("Error %s. \n" ,$stmt->error);
+                return false;
+            }
+        }     
     }
 ?>
