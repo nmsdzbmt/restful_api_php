@@ -19,5 +19,6 @@
         echo json_encode(array('messenger','Question deleted'));
     }else{
         echo json_encode(array('messenger','Question deleted error'));
+        
     }
 ?>
