@@ -19,7 +19,7 @@
 
         //read data
         public function read(){
-            $query = "SELECT * FROM cauhoi ORDER BY id DESC";
+            $query = "SELECT * FROM cauhoi ORDER BY id ASC";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt;

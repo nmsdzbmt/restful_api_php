@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test trắc nghiệm</title>
+    <title>Test IQ</title>
 </head>
 <body>
-    
+    <div class="question" id="question">
+        <h2 id="title"></h2>
+        <ul>
+            <li>
+                <input type="radio" name="answer" class="answer" id="a">
+                <label id="a_answer" for="a"></label>
+            </li>
+            <li>
+                <input type="radio" name="answer" class="answer" id="b">
+                <label id="b_answer" for="b"></label>
+            </li>
+            <li>
+                <input type="radio" name="answer" class="answer" id="c">
+                <label id="c_answer" for="c"></label>
+            </li>
+            <li>
+                <input type="radio" name="answer" class="answer" id="d">
+                <label id="d_answer" for="d"></label>
+            </li>
+            <input type="hidden" id="cau_dung" >
+        </ul>
+    </div>
+    <button id="submit">Câu kế tiếp</button>
+
+    <script src="main.js"></script>
 </body>
 </html>
