@@ -1,5 +1,7 @@
 const answer = document.querySelectorAll('.answer');
 const submitBtn = document.getElementById('submit');
+const quiz = document.getElementById('question');
+let scores_choose = 0;
 let scores = 0;
 let question_now = 0;
 load_question();
@@ -8,6 +10,7 @@ function load_question(){
     fetch('http://localhost:8080/restful_api/restful_api_php/api/question/read.php')
     .then(res => res.json())
     .then(data => {
+        document.getElementById('total_question').value = data.question.length;
         const title = document.getElementById('title');
         const a_answer = document.getElementById('a_answer');
         const b_answer = document.getElementById('b_answer');
@@ -16,7 +19,6 @@ function load_question(){
 
         //show question
         const get_question = data.question[question_now];
-        console.log('get_question');
     
         title.innerText = get_question.title;
         a_answer.innerText = get_question.cau_a;
@@ -25,6 +27,7 @@ function load_question(){
     
         if(get_question.cau_d != null){
             d_answer.innerText = get_question.cau_d;
+            document.getElementById('cau_d').classList.remove('show_question');
         }else{
             document.getElementById('d_answer').classList.add('show_question');
         }
@@ -54,14 +57,23 @@ function remove_answer(){
 
 //event submit
 submitBtn.addEventListener("click", () => {
-    const answer_ = choose_answer();
-    console.log(answer_);
-    if(answer_){
-        if(answer_ === document.getElementById('cau_dung').value){
+    const choose = choose_answer();
+    if(choose){
+        if(choose === document.getElementById('cau_dung').value){
+            scores_choose++;
             scores++;
-            console.log(scores);
         }
     }
     question_now++;
     load_question();
+
+    if(question_now < document.getElementById('total_question').value){
+        load_question();
+    }else{
+        const total_question = document.getElementById('total_question').value;
+        quiz.innerHTML = `
+            <h2>Bạn đã đúng ${scores}/${total_question} câu hỏi </h2>
+            <button onclick="location.reload()">Làm Lại</button>
+            `
+    }
 })

@@ -5,6 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test IQ</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .question{
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-top: 20px;
+        }
+
+        #title{
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        ul li{
+            list-style-type: none;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="question" id="question">
@@ -27,9 +51,11 @@
                 <label id="d_answer" for="d"></label>
             </li>
             <input type="hidden" id="cau_dung" >
+            <input type="hidden" id="total_question" >
         </ul>
+        <button id="submit">Câu kế tiếp</button>
     </div>
-    <button id="submit">Câu kế tiếp</button>
+
 
     <script src="main.js"></script>
 </body>
